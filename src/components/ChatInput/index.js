@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import { db } from "../../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-const ChatInput = ({ channelName, channelId }) => {
+const ChatInput = ({ channelName, channelId, user }) => {
   const inpRef = useRef();
   const [loading, setLoading] = useState(false);
 
@@ -25,8 +25,8 @@ const ChatInput = ({ channelName, channelId }) => {
     await addDoc(innerMessageCol, {
       message: inpRef.current.value,
       timestamp: serverTimestamp(),
-      user: "Soon",
-      userImage: "https://via.placeholder.com/150",
+      user: user.displayName,
+      userImage: user.photoURL,
     });
     setLoading(false);
 

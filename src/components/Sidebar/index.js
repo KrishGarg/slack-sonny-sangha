@@ -26,7 +26,7 @@ import SidebarOption from "../SidebarOption";
 import { db } from "../../firebase";
 import { onSnapshot, query, collection } from "firebase/firestore";
 
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   const [rooms, setRooms] = useState([]);
 
   const roomsCol = collection(db, "rooms");
@@ -54,7 +54,7 @@ const Sidebar = () => {
           <h2>Krish's Slack</h2>
           <h3>
             <FiberManualRecord />
-            Krish Garg
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <Create />

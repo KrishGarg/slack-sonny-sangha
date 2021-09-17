@@ -14,12 +14,23 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SearchIcon from "@mui/icons-material/Search";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const Header = () => {
+// Firebase Stuff
+import { signOut } from "@firebase/auth";
+import { auth } from "../../firebase";
+
+const Header = ({ user }) => {
+  console.log(user);
   return (
     <HeaderContainer>
       {/* Header Left */}
       <HeaderLeft>
-        <HeaderAvatar />
+        <HeaderAvatar
+          onClick={() => {
+            signOut(auth);
+          }}
+          alt={user?.displayName}
+          src={user?.photoURL}
+        />
         <AccessTimeIcon />
       </HeaderLeft>
 

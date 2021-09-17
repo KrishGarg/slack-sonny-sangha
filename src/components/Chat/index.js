@@ -30,7 +30,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-const Chat = () => {
+const Chat = ({ user }) => {
   const roomId = useSelector(selectRoomId);
 
   const chatRef = useRef();
@@ -120,7 +120,11 @@ const Chat = () => {
         })}
       </ChatMessages>
 
-      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
+      <ChatInput
+        user={user}
+        channelName={roomDetails?.name}
+        channelId={roomId}
+      />
     </ChatContainer>
   );
 };
