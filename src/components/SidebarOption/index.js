@@ -10,7 +10,11 @@ import {
 import { db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
-const SidebarOption = ({ Icon, title, addChannelOption }) => {
+// Redux stuff
+import { useDispatch } from "react-redux";
+import { enterRoom } from "../../features/appSlice";
+
+const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
   const addChannel = async () => {
     const channelName = prompt("Please enter the channel name.");
 
@@ -22,7 +26,17 @@ const SidebarOption = ({ Icon, title, addChannelOption }) => {
     }
   };
 
-  const selectChannel = () => {};
+  const dispatch = useDispatch();
+
+  const selectChannel = () => {
+    if (id) {
+      dispatch(
+        enterRoom({
+          roomId: id,
+        })
+      );
+    }
+  };
 
   return (
     <SidebarOptionContainer
